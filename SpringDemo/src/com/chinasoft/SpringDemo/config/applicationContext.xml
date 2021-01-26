@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+        <!-- 配置自动扫描的根目录 -->
+    <context:component-scan base-package="com.chinasoft.SpringDemo" ></context:component-scan>
+		<!-- 用单标driven 开启后端注解配置 -->
+		<mvc:annotation-driven/>
+		 
+		
+		<!--  该SpringMVC后端控制器 需要支持异步交互 
+		配置异步JSON数据 控制器异步返回-->
+		<bean  class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+		<map>
+		  <entry key="html"  value="text/html;charset=UTF-8"/>  
+		<entry key="json"  value="application/json;charset=UTF-8"/>
+		</map>
+		</property>
+		</bean>
+		
+		<!-- 配置视图解析器 后端控制器返回前端页面
+		方法返回值 解析中 添加前后缀 再跳转 -->
+		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix"  value="/"></property>
+		  <property name="suffix"  value=".jsp"></property> 
+		<!-- <property name="suffix"  value=".html"></property> -->
+		</bean>
+		<mvc:annotation-driven/>
+		
+		<!-- 配置后端 文件上传 属性-->
+		<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--  最大上传 50M -->
+		<property name="maxUploadSize"  value="50000000" />
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="maxInMemorySize" value="50000000" />
+		</bean>
+		
+		<!-- 对webapp下的静态资源可以直接访问 后缀名开放-->
+	<mvc:resources location="/" mapping="/**" />
+</beans>
