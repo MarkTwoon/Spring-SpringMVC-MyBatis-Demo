@@ -1,6 +1,7 @@
 package com.chinasoft.SpringDemo.pojo;
 
 public class User {
+	/*111*/
 private String userName;
 private int userAge;
 private String userSex;
