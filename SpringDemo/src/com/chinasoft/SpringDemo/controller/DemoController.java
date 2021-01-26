@@ -71,7 +71,8 @@ public class DemoController  {
 /*ModelAndView mo=new ModelAndView("test");
 String userMain="IOC返回前端值数据信息222";
 mo.addObject(userMain);*/
-		return new ModelAndView("forward:/demo/test2");
+ 	return new ModelAndView("index");
+		/*return new ModelAndView("forward:/demo/test2");*/
 		/*redirect:/  forward:/
 		 * 注意区分前缀名 当前默认为 forward:/ request内部跳转为主
 		 * */

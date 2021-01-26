@@ -41,6 +41,25 @@
 		<property name="maxInMemorySize" value="50000000" />
 		</bean>
 		
+		
 		<!-- 对webapp下的静态资源可以直接访问 后缀名开放-->
 	<mvc:resources location="/" mapping="/**" />
+	
+	
+	
+	
+	<!--   IOC拦截器的 属性配置与注册 -->
+	<mvc:interceptors>
+	<mvc:interceptor>
+	<!-- 全路径 拦截作用域  -->
+	<mvc:mapping path="/**"/>
+	
+	<!-- mvc:exclude-mapping  拦截器针对于特定后端路径的放行 -->
+	  <mvc:exclude-mapping path="/demo/test1"/>
+	  <mvc:exclude-mapping path="/error"/>
+	  <!-- 配置拦截器 作用类的后端包链接 -->
+	  <bean class="com.chinasoft.SpringDemo.interceptor.DemoInterceptor"/>
+	</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>
