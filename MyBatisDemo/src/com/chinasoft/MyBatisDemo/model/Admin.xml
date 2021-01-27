@@ -4,13 +4,19 @@
 <!--一个xml SQL指令仓库 指向一个dao层接口的包链接
 这个映射xml dao层impl的虚拟化 具体的SQL指令执行过程存储在其中 -->
 <mapper  namespace="com.chinasoft.MyBatisDemo.dao.IAdminDao">
+<!-- 写入cache单列标签  表明在此映射文件中  开启myBatis持久层 二级缓存 -->
+ <cache  eviction="LRU" flushInterval="200000" readOnly="true" size="1024" />
+
+
 <!-- parameterType是传入的SQL执行参数 
  resultType 是SQL指令的  查询指令语句结果-->
-<select id="selectGoodsAll"  resultType="map">
+ <!-- 当其查询SQL指令 执行完毕后  数据检索结果集存入缓存，并且不要清除缓存  
+ 除了极个别检索数据  常规查询结果集  都进入缓存中进行数据缓冲控件存储-->
+<select id="selectGoodsAll"  resultType="map"  useCache="true" flushCache="false"  >
 select  *  from tb_goods
 </select>
 
-<select id="selectUserAll"  resultType="map">
+<select id="selectUserAll"  resultType="map"  useCache="true" flushCache="false"   >
 select  *  from user
 </select>
 
