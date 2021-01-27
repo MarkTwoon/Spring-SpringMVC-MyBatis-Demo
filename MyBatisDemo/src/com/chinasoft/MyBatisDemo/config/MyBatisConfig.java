@@ -18,6 +18,7 @@ public static  SqlSession openMyBatis(){
 	
 	try {
 		inputStream=Resources.getResourceAsStream(resource);
+		/*数据库链接与SQL指令执行过程  统一由sqlSessionFactory代理*/
 		sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
 		session=sqlSessionFactory.openSession();
 	} catch (Exception e) {

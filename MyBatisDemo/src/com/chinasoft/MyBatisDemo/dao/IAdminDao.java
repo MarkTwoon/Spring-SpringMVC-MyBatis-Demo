@@ -5,4 +5,5 @@ import java.util.Map;
 
 public interface IAdminDao {
 public List<Map<String,Object>>  selectGoodsAll();
+public List<Map<String,Object>>  selectUserAll();
 }

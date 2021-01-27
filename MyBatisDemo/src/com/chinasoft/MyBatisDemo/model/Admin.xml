@@ -4,6 +4,18 @@
 <!--一个xml SQL指令仓库 指向一个dao层接口的包链接
 这个映射xml dao层impl的虚拟化 具体的SQL指令执行过程存储在其中 -->
 <mapper  namespace="com.chinasoft.MyBatisDemo.dao.IAdminDao">
+<!-- parameterType是传入的SQL执行参数 
+ resultType 是SQL指令的  查询指令语句结果-->
+<select id="selectGoodsAll"  resultType="map">
+select  *  from tb_goods
+</select>
 
+<select id="selectUserAll"  resultType="map">
+select  *  from user
+</select>
 
+<!-- <select id=""></select>
+<update id=""></update>
+<delete id=""></delete>
+<insert id=""></insert> -->
 </mapper>
