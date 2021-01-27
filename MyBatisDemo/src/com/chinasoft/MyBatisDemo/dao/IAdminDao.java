@@ -12,4 +12,5 @@ public int insertGoodByOne(Map<String,Object> map);
 public int deleteGoodById(int goodsId);
 public List<Map<String,Object>> selectGoodByWhere(Map<String,Object> map);
 public int deleteGoods(String[] goodsId);
+public List<Map<String,Object>>  selectGoodsAndUserByWhere(Map<String,Object> map);
 }

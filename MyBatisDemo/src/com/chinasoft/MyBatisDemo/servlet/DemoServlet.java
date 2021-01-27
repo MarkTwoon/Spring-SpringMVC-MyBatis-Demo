@@ -58,10 +58,24 @@ public class DemoServlet {
     map.put("goodsType", "货");
     System.out.println(
     		mapper.selectGoodByWhere(map));*/
-    String []goodsId={"1","3","6"};
+    /*String []goodsId={"1","3","6"};
     int a=mapper.deleteGoods(goodsId);
     System.out.println("删除指令 影响行:"+a);
-    session.commit();
+    session.commit();*/
+    Map<String,Object> map=new HashMap<String, Object>();
+    map.put("goodsId", "8");
+    System.out.println(mapper.selectGoodsAndUserByWhere(map));
+ 
+    Map<String,Object> map1=new HashMap<String, Object>();
+    map1.put("userId", "2");
+    System.out.println(mapper.selectGoodsAndUserByWhere(map1));
+    
+    Map<String,Object> map2=new HashMap<String, Object>();
+    map2.put("goodsName", "水");
+    System.out.println(mapper.selectGoodsAndUserByWhere(map2));
+    map2.put("userName", "张");
+    System.out.println(mapper.selectGoodsAndUserByWhere(map2));
+    
     MyBatisConfig.closeMyBatis(session); 	 
 	}
 

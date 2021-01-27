@@ -61,6 +61,42 @@ open="GOODS_ID in("  separator=","  close=")">
 
 </delete>
 
+<select id="selectGoodsAndUserByWhere"  parameterType="map" resultType="map"
+useCache="true" flushCache="false">
+SELECT 
+tb.GOODS_NAME as goodName,
+tb.GOODS_NUMBER as goodsNumber,
+tb.GOODS_TYPE as goodsType,
+tc.gender as userSex,
+tc.username as userName,
+tc.address as userAdress
+from tb_goods as tb 
+JOIN customer as tc on
+tb.id=tc.id
+<where>
+
+<choose>
+<when test="goodsId!='' and goodsId!=null ">
+    tb.GOODS_ID=#{goodsId}
+</when>
+<when test="userId!='' and userId!=null ">
+ tc.id=#{userId}
+</when>
+<otherwise>
+<if test="goodsName!='' and goodsName!=null ">
+ tb.GOODS_NAME like concat('%',#{goodsName},'%')
+</if>
+<if  test="userName!='' and userName!=null ">
+and tc.username like concat('%',#{userName},'%')
+</if>
+</otherwise>
+</choose>
+
+</where>
+
+</select>
+
+
 
 <!--  MyBatis的站位符 #{} 或者${}  相对于jdbc中的? 多了一个变量名 key
 也是内置拼接SQL指令 -->
