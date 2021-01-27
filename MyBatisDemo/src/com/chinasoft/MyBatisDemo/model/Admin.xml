@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--一个xml SQL指令仓库 指向一个dao层接口的包链接
+这个映射xml dao层impl的虚拟化 具体的SQL指令执行过程存储在其中 -->
+<mapper  namespace="com.chinasoft.MyBatisDemo.dao.IAdminDao">
+
+
+</mapper>
