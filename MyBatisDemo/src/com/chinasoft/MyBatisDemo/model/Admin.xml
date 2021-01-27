@@ -20,6 +20,51 @@ select  *  from tb_goods
 select  *  from user
 </select>
 
+<!--注意数据增删改过程 DML操作 与DQL指令不同
+在数据更新时  记得重置缓存 因为数据已经在更新了 避免数据脏读 -->
+<insert id="insertGoodByOne" parameterType="map" flushCache="true">
+	insert into tb_goods 
+	values(null,'${goodsName}','${goodsType}','${goodsNumber}','${goodsPrice}');
+</insert>
+
+<delete  id="deleteGoodById" parameterType="int"    flushCache="true">
+delete from tb_goods where GOODS_ID=#{goodsId}
+</delete>
+
+<select   id="selectGoodByWhere"  parameterType="map"  
+resultType="map"  useCache="true" flushCache="false"  >
+select * from tb_goods 
+<where>
+<if  test="goodsId!=''  and goodsId!=null ">
+   GOODS_ID=#{goodsId}
+</if>
+<if  test="goodsName!=''  and goodsName!=null   ">
+ and GOODS_NAME like concat('%',#{goodsName},'%')
+</if>
+<if  test="goodsType!='' and goodsType!=null ">
+ and  GOODS_TYPE  like concat('%',#{goodsType},'%')
+</if>
+
+</where>
+</select>
+
+<delete id="deleteGoods" parameterType="String">
+delete from tb_goods
+<where>
+<!-- 动态标签  会在mybatis层 映射内部 自动拼接SQL指令
+最后执行拼接完毕的SQL语句  然后执行 -->
+<foreach  item="goodsId" collection="array" 
+open="GOODS_ID in("  separator=","  close=")">
+#{goodsId}
+</foreach>
+</where>
+
+</delete>
+
+
+<!--  MyBatis的站位符 #{} 或者${}  相对于jdbc中的? 多了一个变量名 key
+也是内置拼接SQL指令 -->
+
 <!-- <select id=""></select>
 <update id=""></update>
 <delete id=""></delete>

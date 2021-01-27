@@ -1,6 +1,7 @@
 package com.chinasoft.MyBatisDemo.servlet;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,15 +27,42 @@ public class DemoServlet {
     
     List<Map<String,Object>> userList=mapper.selectGoodsAll();
     System.out.println(userList);*/
-    for(int i=0;i<50;i++){
+     /*for(int i=0;i<3;i++){
     	List<Map<String,Object>>  list=mapper.selectGoodsAll();
     	System.out.println(list);
         System.out.println("SQL指令执行成功，第"+i+"次");
-    }
-    
-    
-    MyBatisConfig.closeMyBatis(session); 
-		 
+    } 
+    Map<String,Object> map=new HashMap<String, Object>();
+    map.put("goodsName", "矿泉水");
+    map.put("goodsType", "饮用水");
+    map.put("goodsNumber", "60");
+    map.put("goodsPrice", "2");
+    在这里更新了   商品表数据
+    if(mapper.insertGoodByOne(map)>0){
+    System.out.println("数据新增成功！");	
+    }else{
+    	System.out.println("数据新增失败！！");	
+    } */
+   /*  if(mapper.deleteGoodById(2)>0){
+    	 System.out.println("数据删除成功！");	
+     }else{
+    	 System.out.println("数据删除失败！");	
+     }*/
+     /*注意增删改  需要事物提交！*/
+    /* session.commit();*/
+    /*更新完数据后  再次查询商品表数据 看有没有数据及时更新！ */
+    /*List<Map<String,Object>>  list=mapper.selectGoodsAll();
+	System.out.println(list);*/
+    /*Map<String,Object> map=new HashMap<String, Object>();
+   map.put("goodsName", "瓜");
+    map.put("goodsType", "货");
+    System.out.println(
+    		mapper.selectGoodByWhere(map));*/
+    String []goodsId={"1","3","6"};
+    int a=mapper.deleteGoods(goodsId);
+    System.out.println("删除指令 影响行:"+a);
+    session.commit();
+    MyBatisConfig.closeMyBatis(session); 	 
 	}
 
 }
